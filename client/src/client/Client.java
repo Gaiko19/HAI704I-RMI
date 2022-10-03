@@ -75,8 +75,14 @@ public class Client extends UnicastRemoteObject implements IClient {
 
     @Override
     public void exitClient() throws RemoteException {
-        cabinet.suprClient(this);
-        
+        try {
+            cabinet.suprClient(this);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Impossible d'accéder au cabinet !");
+
+        } 
     }
 
     @Override
