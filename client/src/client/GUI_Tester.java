@@ -1,45 +1,25 @@
 package client;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.MaskFormatter;
-
-import java.awt.*;
-import java.awt.event.*;
-
-import Server.AnimalImpl;
-import Server.CabinetImpl;
-import common.IAnimal;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.text.ParseException;
-import java.awt.event.ActionEvent;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.SwingConstants;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JSeparator;
-import java.awt.Font;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
+
+import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.Box;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
+
+import common.IAnimal;
 
 public class GUI_Tester extends JFrame {
 
