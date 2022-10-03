@@ -13,5 +13,6 @@ public interface IClient extends Remote {
     public IAnimal displayAnimal(String name) throws RemoteException;
     public void exitClient() throws RemoteException;
     public void alertClient(String msg) throws RemoteException;
+	public String outputCabinet() throws RemoteException;
     
 }
