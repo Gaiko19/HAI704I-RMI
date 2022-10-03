@@ -35,16 +35,13 @@ public class Client extends UnicastRemoteObject implements IClient {
             this.cabinet = (ICabinet) registry.lookup("cabinet");
             this.cabinet.addClient(this);
             System.out.println("Client connecté.\n");
-        } 
-        catch (RemoteException e) {
-            System.err.println("Problème lors de la connexion au serveur");
-            //e.printStackTrace();
-            System.exit(1);
+        } catch (RemoteException e) {
+            System.err.println("Problème lors de la connexion au server");
+            e.printStackTrace();
         }
         catch (NotBoundException e){
-            System.err.println("Problème lors de la connexion au serveur");
-            //e.printStackTrace();
-            System.exit(1);
+            System.err.println("Problème lors de la connexion au server");
+            e.printStackTrace();
         } 
         
     }
@@ -78,14 +75,7 @@ public class Client extends UnicastRemoteObject implements IClient {
 
     @Override
     public void exitClient() throws RemoteException {
-        try {
-            cabinet.suprClient(this);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Impossible d'accéder au cabinet !");
-            
-        }
+        cabinet.suprClient(this);
         
     }
 
@@ -98,6 +88,18 @@ public class Client extends UnicastRemoteObject implements IClient {
 
             }
         }        
+    }
+    
+    @Override
+    public String outputCabinet() throws RemoteException {
+    	String animalString = null;
+        if(cabinet != null){
+            System.out.println("Animaux du cabinet :\n");
+            for (IAnimal animal : cabinet.getCabinet()) {
+                animalString += ("- " + animal.getNomAnimal() + " / " + animal.getNomMaitre() + " / " + animal.getEspece().getNomEspece() + " / " + animal.getRace() + " / " + animal.getDossier().getEtat() + "\n");
+            }
+        }
+		return animalString;        
     }
 
     @Override
