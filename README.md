@@ -2,6 +2,7 @@
 # TP1 RMI : Cabinet Vétérinaire
 
 [![MIT License](https://img.shields.io/github/license/Gaiko19/HAI704I-RMI)](https://img.shields.io/github/license/Gaiko19/HAI704I-RMI/)
+[![release](https://img.shields.io/github/v/release/Gaiko19/HAI704I-RMI)](https://github.com/Gaiko19/HAI704I-RMI/releases/tag/v1.0)
 
 Ce projet implémente le TP1 de l'UE HAI704I de l'Université de Montpellier. 
 Il s'agit de mettre en place un cabinet de vétérinaire virtuel contenant des animaux et des clients (des vétérinaires du cabinet).
