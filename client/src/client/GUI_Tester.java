@@ -1,5 +1,6 @@
 package client;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -13,6 +14,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -20,13 +22,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import common.IAnimal;
+import javax.swing.SwingConstants;
+import javax.swing.JScrollBar;
 
 public class GUI_Tester extends JFrame {
 
 	private JPanel Page;
 	private JFrame frame;
-	private JTextField handlerNameInput;
 	private JTextField animalNameInput;
+	private JTextField handlerNameInput;
 	private JTextField animalSpeciesInput;
 	private JTextField animalRaceInput;
 	private JTextField displayAddedClient;
@@ -70,7 +74,12 @@ public class GUI_Tester extends JFrame {
 		JTextArea terminalDisplay = new JTextArea();
 		terminalDisplay.setFont(new Font("Dialog", Font.PLAIN, 11));
 		terminalDisplay.setBounds(20, 314, 592, 129);
+		terminalDisplay.setEditable(false);
 		Page.add(terminalDisplay);
+		JScrollPane scrollPane = new JScrollPane(terminalDisplay, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); //La barre horizontale toujours visible
+	    getContentPane().add(scrollPane, BorderLayout.CENTER);
+	    Page.add(scrollPane);
+	    Page.setVisible(true);
 		
 		JButton insertAnimalsBtn = new JButton("Insérer des animaux (5) avec leurs propriétaires");
 		insertAnimalsBtn.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -100,9 +109,11 @@ public class GUI_Tester extends JFrame {
 				}
 								
 				autoInsertedAnimals.setEditable(false);
+				autoInsertedAnimals.setForeground(Color.BLUE);
 				autoInsertedAnimals.setText("Création des clients terminée ...");
 				
 				try {
+					terminalDisplay.setText("");
 					terminalDisplay.setText(client.outputCabinet());
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
@@ -122,37 +133,32 @@ public class GUI_Tester extends JFrame {
 		quitBtn.setBounds(658, 427, 96, 30);
 		Page.add(quitBtn);
 		
-		handlerNameInput = new JTextField();
-		handlerNameInput.setToolTipText("Nom de l'animal");
-		handlerNameInput.setBounds(10, 149, 96, 19);
-		Page.add(handlerNameInput);
-		handlerNameInput.setColumns(10);
-		
 		animalNameInput = new JTextField();
-		animalNameInput.setToolTipText("Nom du maître");
-		animalNameInput.setColumns(10);
-		animalNameInput.setBounds(116, 149, 96, 19);
+		animalNameInput.setToolTipText("Nom de l'animal");
+		animalNameInput.setBounds(10, 157, 96, 19);
 		Page.add(animalNameInput);
+		animalNameInput.setColumns(10);
+		
+		handlerNameInput = new JTextField();
+		handlerNameInput.setToolTipText("Nom du maître");
+		handlerNameInput.setColumns(10);
+		handlerNameInput.setBounds(116, 157, 96, 19);
+		Page.add(handlerNameInput);
 		
 		animalSpeciesInput = new JTextField();
 		animalSpeciesInput.setToolTipText("Espèce");
 		animalSpeciesInput.setColumns(10);
-		animalSpeciesInput.setBounds(222, 149, 96, 19);
+		animalSpeciesInput.setBounds(222, 157, 96, 19);
 		Page.add(animalSpeciesInput);
 		
 		animalRaceInput = new JTextField();
 		animalRaceInput.setToolTipText("Race");
 		animalRaceInput.setColumns(10);
-		animalRaceInput.setBounds(328, 149, 96, 19);
+		animalRaceInput.setBounds(328, 157, 96, 19);
 		Page.add(animalRaceInput);
 		
-		JFormattedTextField numberClient = new JFormattedTextField(new MaskFormatter("###"));
-		numberClient.setBounds(176, 72, 59, 19);
-		Page.add(numberClient);
-		numberClient.setEnabled(false);
-		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 214, 224, 20);
+		separator.setBounds(203, 225, 327, 20);
 		Page.add(separator);
 		
 		JButton addClientBtn = new JButton("Ajouter");
@@ -173,7 +179,7 @@ public class GUI_Tester extends JFrame {
 				displayAddedClient.setEditable(false);
 				
 				if(animalStateInput.getText() == null) {
-					try {
+					try { 
 						client.addAnimal(animalNameInput.getText(), handlerNameInput.getText(), animalSpeciesInput.getText(), animalRaceInput.getText(), "Non renseigné");		
 						displayAddedClient.setText(client.displayAnimal(animalNameInput.getText()).getString());
 					} catch (RemoteException e1) {
@@ -187,6 +193,14 @@ public class GUI_Tester extends JFrame {
 						e1.printStackTrace();
 					}
 				}	
+				
+				try {
+					terminalDisplay.setText("");
+					terminalDisplay.setText(client.outputCabinet());
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+
 			}
 		});
 		addClientBtn.setBounds(546, 143, 96, 30);
@@ -194,46 +208,41 @@ public class GUI_Tester extends JFrame {
 		
 		JLabel newClientTitle = new JLabel("Ajouter un Client");
 		newClientTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		newClientTitle.setBounds(10, 101, 158, 46);
+		newClientTitle.setBounds(10, 90, 158, 46);
 		Page.add(newClientTitle);
-		
-		JLabel newClientIndications = new JLabel("(NomAnimal, NomMaître, EspeceAnimal, RaceAnimal, Etat)");
-		newClientIndications.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		newClientIndications.setBounds(149, 103, 406, 46);
-		Page.add(newClientIndications);
 		
 		displayAddedClient = new JTextField();
 		displayAddedClient.setToolTipText("Nom du maître");
 		displayAddedClient.setColumns(10);
-		displayAddedClient.setBounds(10, 185, 272, 19);
+		displayAddedClient.setBounds(97, 186, 272, 19);
 		Page.add(displayAddedClient);
 		
 		JButton clearBtn = new JButton("Clear");
 		clearBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				handlerNameInput.setText("");
 				animalNameInput.setText("");
+				handlerNameInput.setText("");
 				animalSpeciesInput.setText("");
 				animalRaceInput.setText("");
 				displayAddedClient.setText("");
 				animalStateInput.setText("");
 			}
 		});
-		clearBtn.setBounds(648, 149, 106, 19);
+		clearBtn.setBounds(392, 186, 65, 19);
 		Page.add(clearBtn);
 		
 		JLabel lblObtenirLtatDun = new JLabel("Obtenir l'état d'un patient");
 		lblObtenirLtatDun.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblObtenirLtatDun.setBounds(10, 214, 278, 46);
+		lblObtenirLtatDun.setBounds(10, 204, 278, 46);
 		Page.add(lblObtenirLtatDun);
 		
 		animalSearchInput = new JTextField();
 		animalSearchInput.setToolTipText("Indiquez l'état");
 		animalSearchInput.setColumns(10);
-		animalSearchInput.setBounds(194, 254, 113, 19);
+		animalSearchInput.setBounds(175, 255, 113, 19);
 		Page.add(animalSearchInput);
 		
-		JLabel lblNewLabel = new JLabel("Nom du patient (animal)");
+		JLabel lblNewLabel = new JLabel("Nom du patient (animal) :");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel.setBounds(10, 254, 202, 19);
 		Page.add(lblNewLabel);
@@ -244,6 +253,7 @@ public class GUI_Tester extends JFrame {
 		Page.add(lblEtatDuPatient);
 		
 		getAnimalState = new JTextField();
+		getAnimalState.setHorizontalAlignment(SwingConstants.CENTER);
 		getAnimalState.setToolTipText("Indiquez l'état");
 		getAnimalState.setColumns(10);
 		getAnimalState.setBounds(116, 283, 202, 19);
@@ -277,19 +287,21 @@ public class GUI_Tester extends JFrame {
 				
 				if(animalExist != null) {
 					try {
+						getAnimalState.setForeground(Color.BLACK);
 						getAnimalState.setText(client.displayAnimal(animalName).getDossier().getEtat());
 					} catch (RemoteException e1) {
 						e1.printStackTrace();
 					}
 				} else {
-					getAnimalState.setText("Animal inexistant");
+					getAnimalState.setForeground(Color.RED);
+					getAnimalState.setText("Animal Inexistant");
 				}
 				
 				
 				getAnimalState.setEditable(false);
 			}
 		});
-		animalSearch.setBounds(328, 248, 126, 30);
+		animalSearch.setBounds(313, 249, 126, 30);
 		Page.add(animalSearch);
 		
 		autoInsertedAnimals = new JTextField();
@@ -301,10 +313,10 @@ public class GUI_Tester extends JFrame {
 		animalStateInput = new JTextField();
 		animalStateInput.setToolTipText("Etat de l'animal");
 		animalStateInput.setColumns(10);
-		animalStateInput.setBounds(434, 149, 96, 19);
+		animalStateInput.setBounds(434, 157, 96, 19);
 		Page.add(animalStateInput);
 		
-		JButton btnInsrerClients = new JButton("Insérer n clients");
+		JButton btnInsrerClients = new JButton("Insérer 100 clients");
 		btnInsrerClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Client client = null;
@@ -319,9 +331,7 @@ public class GUI_Tester extends JFrame {
 				} catch (RemoteException e2) {
 					e2.printStackTrace();
 				}
-				
-				//int n = Integer.valueOf(numberClient.getText());
-					
+									
 				try {
 					for(int i = 0; i < 100; i++) {
 						client.addAnimal( String.valueOf(i), "maitre " + String.valueOf(i), "Chien", "Doge", "Tranquille");
@@ -332,16 +342,24 @@ public class GUI_Tester extends JFrame {
 				}
 								
 				nInsertedAnimals.setEditable(false);
+				nInsertedAnimals.setForeground(Color.BLUE);
 				nInsertedAnimals.setText("Insertion réalisée avec succès");
+				
+				try {
+					terminalDisplay.setText("");
+					terminalDisplay.setText(client.outputCabinet());
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		
-		btnInsrerClients.setBounds(241, 63, 204, 30);
+		btnInsrerClients.setBounds(165, 66, 204, 30);
 		Page.add(btnInsrerClients);
 		
 		nInsertedAnimals = new JTextField();
 		nInsertedAnimals.setColumns(10);
-		nInsertedAnimals.setBounds(457, 72, 252, 19);
+		nInsertedAnimals.setBounds(379, 74, 252, 19);
 		Page.add(nInsertedAnimals);
 		nInsertedAnimals.setEditable(false);
 		
@@ -349,6 +367,79 @@ public class GUI_Tester extends JFrame {
 		lblInsertionDeClients.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblInsertionDeClients.setBounds(10, 57, 278, 46);
 		Page.add(lblInsertionDeClients);
+		
+		JButton btnVoirLeCabinet = new JButton("Voir le cabinet");
+		btnVoirLeCabinet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Client client = null;
+				try {
+					client = new Client();
+				} catch (RemoteException e2) {
+					e2.printStackTrace();
+				}
+				
+				try {
+					client.startClient();
+				} catch (RemoteException e2) {
+					e2.printStackTrace();
+				}
+				
+				try {
+					terminalDisplay.setText(client.outputCabinet());
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+									
+			}
+		});
+		btnVoirLeCabinet.setBounds(584, 214, 170, 30);
+		Page.add(btnVoirLeCabinet);
+		
+		JButton btnClearTerminal = new JButton("Clear Terminal");
+		btnClearTerminal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				terminalDisplay.setText("");
+			}
+		});
+		btnClearTerminal.setBounds(584, 253, 170, 30);
+		Page.add(btnClearTerminal);
+		
+		JLabel lblNomanimal = new JLabel("Nom animal");
+		lblNomanimal.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNomanimal.setBounds(33, 132, 60, 19);
+		Page.add(lblNomanimal);
+		
+		JLabel lblNomMatre = new JLabel("Nom maître");
+		lblNomMatre.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNomMatre.setBounds(141, 132, 60, 19);
+		Page.add(lblNomMatre);
+		
+		JLabel lblEspece = new JLabel("Espece");
+		lblEspece.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEspece.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblEspece.setBounds(240, 132, 60, 19);
+		Page.add(lblEspece);
+		
+		JLabel lblRace = new JLabel("Race");
+		lblRace.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRace.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblRace.setBounds(345, 132, 60, 19);
+		Page.add(lblRace);
+		
+		JLabel lblEtat = new JLabel("Etat");
+		lblEtat.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEtat.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblEtat.setBounds(454, 132, 60, 19);
+		Page.add(lblEtat);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(141, 113, 458, 20);
+		Page.add(separator_1);
+		
+		JLabel lblClientCre = new JLabel("Client créée : ");
+		lblClientCre.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblClientCre.setBounds(10, 186, 96, 19);
+		Page.add(lblClientCre);
 		
 		}
 }
