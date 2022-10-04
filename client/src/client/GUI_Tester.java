@@ -76,10 +76,6 @@ public class GUI_Tester extends JFrame {
 		terminalDisplay.setBounds(20, 314, 592, 129);
 		terminalDisplay.setEditable(false);
 		Page.add(terminalDisplay);
-		JScrollPane scrollPane = new JScrollPane(terminalDisplay, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); //La barre horizontale toujours visible
-	    getContentPane().add(scrollPane, BorderLayout.CENTER);
-	    Page.add(scrollPane);
-	    Page.setVisible(true);
 		
 		JButton insertAnimalsBtn = new JButton("Insérer des animaux (5) avec leurs propriétaires");
 		insertAnimalsBtn.setFont(new Font("Dialog", Font.BOLD, 10));
