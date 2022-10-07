@@ -24,7 +24,7 @@ Vous avez également besoin d'avoir `JAVA` d'installé sur votre machine.
 
 ## Utilisation
 
-1. Commencer par installer le projet en récupérant le [`ZIP`](https://github.com/Gaiko19/HAI704I-RMI/releases/tag/v1.0) du projet et en en extrayant son contenues.
+1. Commencer par installer le projet en récupérant le [`ZIP`](https://github.com/Gaiko19/HAI704I-RMI/releases/tag/v2.0) du projet et en en extrayant son contenues.
 
 2. Compiler les trois paquets en faisant la commande `make` dans votre terminal (ouvert dans le dossier extrait).
 
