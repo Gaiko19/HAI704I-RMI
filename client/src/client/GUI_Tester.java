@@ -61,6 +61,18 @@ public class GUI_Tester extends JFrame {
 	 * @throws ParseException 
 	 */
 	public GUI_Tester() throws ParseException {
+		Client client = null;
+		try {
+			client = new Client();
+		} catch (RemoteException e2) {
+			e2.printStackTrace();
+		}
+		
+		try {
+			client.startClient();
+		} catch (RemoteException e2) {
+			e2.printStackTrace();
+		}
 		
 		setTitle("RMI TESTER GUI");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +87,14 @@ public class GUI_Tester extends JFrame {
 		terminalDisplay.setFont(new Font("Dialog", Font.PLAIN, 11));
 		terminalDisplay.setBounds(20, 314, 592, 129);
 		terminalDisplay.setEditable(false);
-		Page.add(terminalDisplay);
+		//Page.add(terminalDisplay);
+		
+		JScrollPane scrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+		JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(20, 314, 592, 129);
+		scrollPane.add(terminalDisplay);
+		scrollPane.setViewportView(terminalDisplay);
+		Page.add(scrollPane);
 		
 		JButton insertAnimalsBtn = new JButton("Insérer des animaux (5) avec leurs propriétaires");
 		insertAnimalsBtn.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -437,5 +456,5 @@ public class GUI_Tester extends JFrame {
 		lblClientCre.setBounds(10, 186, 96, 19);
 		Page.add(lblClientCre);
 		
-		}
+		} 
 }
