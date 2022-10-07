@@ -96,7 +96,7 @@ public class GUI_Tester extends JFrame {
 		scrollPane.setViewportView(terminalDisplay);
 		Page.add(scrollPane);
 		
-		JButton insertAnimalsBtn = new JButton("Insérer des animaux (5) avec leurs propriétaires");
+		JButton insertAnimalsBtn = new JButton("Insérer 5 patients avec leurs propriétaires");
 		insertAnimalsBtn.setFont(new Font("Dialog", Font.BOLD, 10));
 		insertAnimalsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,13 +129,13 @@ public class GUI_Tester extends JFrame {
 				
 				try {
 					terminalDisplay.setText("");
-					terminalDisplay.setText(client.outputCabinet());
+					terminalDisplay.setText(client.outputCabinet() + client.getAlertGui());
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
-		insertAnimalsBtn.setBounds(10, 21, 327, 30);
+		insertAnimalsBtn.setBounds(10, 21, 285, 30);
 		Page.add(insertAnimalsBtn);
 		
 		JButton quitBtn = new JButton("Quitter");
@@ -218,10 +218,10 @@ public class GUI_Tester extends JFrame {
 
 			}
 		});
-		addClientBtn.setBounds(546, 143, 96, 30);
+		addClientBtn.setBounds(546, 151, 96, 30);
 		Page.add(addClientBtn);
 		
-		JLabel newClientTitle = new JLabel("Ajouter un Client");
+		JLabel newClientTitle = new JLabel("Ajouter un Patient");
 		newClientTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
 		newClientTitle.setBounds(10, 90, 158, 46);
 		Page.add(newClientTitle);
@@ -321,7 +321,7 @@ public class GUI_Tester extends JFrame {
 		Page.add(animalSearch);
 		
 		autoInsertedAnimals = new JTextField();
-		autoInsertedAnimals.setBounds(360, 27, 252, 19);
+		autoInsertedAnimals.setBounds(305, 27, 252, 19);
 		Page.add(autoInsertedAnimals);
 		autoInsertedAnimals.setColumns(10);
 		autoInsertedAnimals.setEditable(false);
@@ -332,7 +332,7 @@ public class GUI_Tester extends JFrame {
 		animalStateInput.setBounds(434, 157, 96, 19);
 		Page.add(animalStateInput);
 		
-		JButton btnInsrerClients = new JButton("Insérer 100 clients");
+		JButton btnInsrerClients = new JButton("Insérer 100 patients");
 		btnInsrerClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Client client = null;
@@ -363,23 +363,24 @@ public class GUI_Tester extends JFrame {
 				
 				try {
 					terminalDisplay.setText("");
-					terminalDisplay.setText(client.outputCabinet());
+					terminalDisplay.setText(client.outputCabinet() + "\n" + client.getAlertGui());
+					
 				} catch (RemoteException e) {
 					e.printStackTrace();
 				}
 			}
 		});
 		
-		btnInsrerClients.setBounds(165, 66, 204, 30);
+		btnInsrerClients.setBounds(176, 66, 170, 30);
 		Page.add(btnInsrerClients);
 		
 		nInsertedAnimals = new JTextField();
 		nInsertedAnimals.setColumns(10);
-		nInsertedAnimals.setBounds(379, 74, 252, 19);
+		nInsertedAnimals.setBounds(356, 72, 252, 19);
 		Page.add(nInsertedAnimals);
 		nInsertedAnimals.setEditable(false);
 		
-		JLabel lblInsertionDeClients = new JLabel("Insertion de clients");
+		JLabel lblInsertionDeClients = new JLabel("Insertion de patients");
 		lblInsertionDeClients.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblInsertionDeClients.setBounds(10, 57, 278, 46);
 		Page.add(lblInsertionDeClients);
@@ -401,7 +402,7 @@ public class GUI_Tester extends JFrame {
 				}
 				
 				try {
-					terminalDisplay.setText(client.outputCabinet());
+					terminalDisplay.setText(client.outputCabinet() + "\n" + client.getAlertGui());
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -449,10 +450,10 @@ public class GUI_Tester extends JFrame {
 		Page.add(lblEtat);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(141, 113, 458, 20);
+		separator_1.setBounds(178, 113, 458, 20);
 		Page.add(separator_1);
 		
-		JLabel lblClientCre = new JLabel("Client créée : ");
+		JLabel lblClientCre = new JLabel("Patient créée : ");
 		lblClientCre.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblClientCre.setBounds(10, 186, 96, 19);
 		Page.add(lblClientCre);

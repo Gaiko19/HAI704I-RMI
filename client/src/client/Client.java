@@ -117,5 +117,17 @@ public class Client extends UnicastRemoteObject implements IClient {
    public void alertClient(String msg) throws RemoteException{
         System.out.println(ANSI_RED + msg + ANSI_RESET);
    } 
+   
+   public String getAlertGui() throws RemoteException{
+	   String msgFull = "Plus de 100 animaux dans le cabinet !\n";
+	   int cpt = 0;
+	   for (IAnimal animal : cabinet.getCabinet()) {
+		   cpt = cpt + 1;
+	   }
+	   if(cpt >= 100) {
+			return msgFull;
+	   }
+	   return "";
+   }
     
 }
