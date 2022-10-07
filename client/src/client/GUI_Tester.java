@@ -227,6 +227,7 @@ public class GUI_Tester extends JFrame {
 		Page.add(newClientTitle);
 		
 		displayAddedClient = new JTextField();
+		displayAddedClient.setEditable(false);
 		displayAddedClient.setToolTipText("Nom du maître");
 		displayAddedClient.setColumns(10);
 		displayAddedClient.setBounds(97, 186, 272, 19);
