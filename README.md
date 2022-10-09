@@ -13,7 +13,7 @@ Ce projet contient :
 - Trois paquets : un client, un serveur et un paquet common contenant les classes communes au deux projets.
 - Un Makefile afin de compiler et lancer les différents projets
 - Un fichier policy pour sécuriser l'accès au serveur
-- Un README
+- Ce README
 - Un rapport sur le développement du projet
 
 ## Pré-requis
@@ -38,9 +38,10 @@ Vous avez également besoin d'avoir `JAVA` d'installé sur votre machine.
 
 7. Une fois terminé vous pouvez nettoyer les fichiers avec `make clean`.
 
-### Remarque
-La question sur l'utilisation du codebase est expliquée en détail dans le rapport et ne peut être testée qu'avec le client en CLI
-    
+### Remarques
+- La question sur l'utilisation du codebase est expliquée en détail dans le rapport et ne peut être testée qu'avec le client en CLI
+- RMI étant une technique vieillissante et non sans risque, il se peut que lors de l'ajout de patients le client lance une erreur "Connection refused". Cela ne provient pas du code, et le simple fait de redémarrer le client et/ou le serveur peut corriger ce problème qui survient de manière aléatoire.
+
 ## Authors
 
 Ce projet a été fait par :
