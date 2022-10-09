@@ -1,4 +1,3 @@
-
 # TP1 RMI : Cabinet Vétérinaire
 
 [![MIT License](https://img.shields.io/github/license/Gaiko19/HAI704I-RMI)](https://img.shields.io/github/license/Gaiko19/HAI704I-RMI/)
@@ -14,7 +13,8 @@ Ce projet contient :
 - Trois paquets : un client, un serveur et un paquet common contenant les classes communes au deux projets.
 - Un Makefile afin de compiler et lancer les différents projets
 - Un fichier policy pour sécuriser l'accès au serveur
-- Ce README
+- Un README
+- Un rapport sur le développement du projet
 
 ## Pré-requis
 
@@ -24,7 +24,7 @@ Vous avez également besoin d'avoir `JAVA` d'installé sur votre machine.
 
 ## Utilisation
 
-1. Commencer par installer le projet en récupérant le [`ZIP`](https://github.com/Gaiko19/HAI704I-RMI/releases/tag/v2.0) du projet et en en extrayant son contenues.
+1. Commencer par installer le projet en récupérant le [`ZIP`](https://github.com/Gaiko19/HAI704I-RMI/releases/tag/v2.1) du projet et en en extrayant son contenues.
 
 2. Compiler les trois paquets en faisant la commande `make` dans votre terminal (ouvert dans le dossier extrait).
 
@@ -37,6 +37,9 @@ Vous avez également besoin d'avoir `JAVA` d'installé sur votre machine.
 6. Suivez les instructions ou options proposées par le client.
 
 7. Une fois terminé vous pouvez nettoyer les fichiers avec `make clean`.
+
+### Remarque
+La question sur l'utilisation du codebase est expliquée en détail dans le rapport et ne peut être testée qu'avec le client en CLI
     
 ## Authors
 
@@ -47,5 +50,4 @@ Ce projet a été fait par :
 
 En M1 Génie Logiciel à l'Université de Montpellier
 
-
-
+**Full Changelog**: https://github.com/Gaiko19/HAI704I-RMI/compare/v2.0...v2.1
