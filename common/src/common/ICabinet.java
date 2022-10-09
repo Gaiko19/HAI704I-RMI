@@ -9,6 +9,7 @@ public interface ICabinet extends Remote {
     void addAnimal(String nomAnimal, String nomMaitre, IEspece espece, String race, IDossierSuivi doss) throws RemoteException;
     void addAnimal(String nomAnimal, String nomMaitre, String espece, String race) throws RemoteException;
     void addAnimal(String nomAnimal, String nomMaitre, String espece, String race, String dossier) throws RemoteException;
+    void addAnimal(String nomAnimal, String nomMaitre, IEspece espece, String race, String dossier) throws RemoteException;
     void addAnimal(IAnimal animal) throws RemoteException;
     IAnimal searchAnimal(String nomAnimal) throws RemoteException;
     void addClient(IClient client) throws RemoteException;

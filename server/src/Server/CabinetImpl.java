@@ -87,6 +87,23 @@ public class CabinetImpl extends UnicastRemoteObject implements ICabinet {
     }
 
     @Override
+    public void addAnimal(String nomAnimal, String nomMaitre, IEspece espece, String race, String dossier) throws RemoteException {
+        EspeceImpl esp = new EspeceImpl();
+        esp.setDureeVie(espece.getDureeVie());
+        esp.setNomEspece(espece.getNomEspece());
+        DossierSuiviImpl dos = new DossierSuiviImpl(dossier);
+        AnimalImpl animal = new AnimalImpl(nomAnimal, nomMaitre, esp, race, dos);
+        this.animals.add(animal);
+
+        if(animals.size() >= 100){
+            for (IClient client : clients) {
+                client.alertClient("Plus de 100 animaux dans le cabinet !\n");
+            }
+        }  
+        
+    }
+
+    @Override
     public IAnimal searchAnimal(String nomAnimal) throws RemoteException {
         for (int i = 0; i < this.animals.size(); i++) {
             try {

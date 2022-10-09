@@ -16,7 +16,7 @@ public class Server {
 		System.setProperty("java.security.policy", "./security.policy");
 		SecurityManager securityManager = new SecurityManager();
 		System.setSecurityManager(securityManager);
-		System.setProperty("java.rmi.server.codebase", "file:./client/");
+		System.setProperty("java.rmi.server.codebase", "file:./client/obj/");
 		try{
 			CabinetImpl cabinet = new CabinetImpl();
 			EspeceImpl espChat = new EspeceImpl(10,"Chat");

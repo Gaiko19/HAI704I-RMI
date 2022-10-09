@@ -46,6 +46,13 @@ public class Client extends UnicastRemoteObject implements IClient {
         
     }
 
+    public void addChien(String nom, String maitre, String race, String dos) throws RemoteException {
+        Chien esp = new Chien();
+        this.cabinet.addAnimal(nom, maitre, esp, race, dos);
+        System.out.println(nom+" ajouté avec succés !");
+        
+    }
+
     @Override
     public void addAnimal(String nom, String maitre, String esp, String race) throws RemoteException {
         this.cabinet.addAnimal(nom, maitre, esp, race);

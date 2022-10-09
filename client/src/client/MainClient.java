@@ -20,8 +20,8 @@ public class MainClient {
 
             Scanner reader = new Scanner(System.in);
             int choice = -1;
-            while (choice < 4) {
-                System.out.println("Que voulez-vous faire ?\n1. Voir le cabinet\n2. Ajouter un animal\n3. Ajouter n animaux\n4. Quitter\n ");
+            while (choice < 5) {
+                System.out.println("Que voulez-vous faire ?\n1. Voir le cabinet\n2. Ajouter un animal\n3. Ajouter n animaux\n4. Ajouter un chien\n5. Quitter\n ");
                 choice = reader.nextInt();
 
                 switch(choice){
@@ -54,9 +54,24 @@ public class MainClient {
                         int n = reader.nextInt();
                         System.out.println("Ajout de "+n+" animaux...\n ");
                         for (int i = 0; i < n; i++) {
-                            client.addAnimal( String.valueOf(i), "maitre "+String.valueOf(i), "Chien", "Doge", "Tranquille");
+                            client.addAnimal( String.valueOf(i), "maitre "+String.valueOf(i), "TEST", "Doge", "Tranquille");
                         }
                         break;
+                    
+                    case 4:
+                        System.out.println("Ajout d'un chien':\n");
+                        input = new Scanner(System.in);
+                        System.out.println("Nom du chien: ");
+                         name = input.nextLine();
+                        System.out.println("\nNom du maitre: ");
+                         maitre = input.nextLine();
+                        System.out.println("\nRace du chien: ");
+                         race = input.nextLine();
+                        System.out.println("\nEtat de sante: ");
+                         etat = input.nextLine();
+                        client.addChien(name, maitre, race, etat);
+                        System.out.println("\nNouvel animal: \n"+client.displayAnimal(name).getString());
+                    break;
                     default:
                         System.out.println("Au revoir...");
                         client.exitClient();
